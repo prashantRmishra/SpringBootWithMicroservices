@@ -116,6 +116,33 @@ Hence add following to `application.properties` of microservice application (whi
 
 Now you can access `localhost:8888/limit-service/default` to get values stored in the `limit-service.properties` file accessible to Spring cloud config server.
 
+Creating multiple copies of configuration files (for different environment like QA,DEV etc) in the central repository accessible to config-server
+-
+Creating file like 
+
+`limit-service-dev.properties` 
+
+`limit-service-qa.properties`
+
+Now, you can access these properties at url : `localhost:8888/limit-service/dev` or `localhost:8888/limit-service/qa` 
+
+In order to access these properties from the limit-service we need to configure the profile in the `application.properties` file of limit-microservice.
+
+`spring.profiles.active = dev` 
+or 
+`spring.profiles.active = qa`
+
+but the microservice will pickup the default path in order to change it to dev or qa you need to add the config in the `application.properties`
+
+<img src= "src/main/resources/static/images/default-confilg-path.PNG" >
+
+ add following to change the default path to dev or qa as : `spring.cloud.config.profile = dev`
+ 
+ <img src = "src/main/resources/static/images/dev-config-path.PNG">
+
+
+
+
 
 
 
